@@ -3,18 +3,25 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Thothglyph's documentation!
-======================================
+Thothglyph
+==========
+
+A Documentation converter and language for Engineers
 
 .. toctree::
    :maxdepth: 2
+
+   usage
+
+.. toctree::
+   :maxdepth: 1
    :caption: Languages
 
    lang/tglyph
    lang/md
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Tools
 
    tool/vscode
