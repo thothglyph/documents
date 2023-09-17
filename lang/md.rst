@@ -11,7 +11,7 @@ Thothglyph 方言
 ---------------
 
 Thothglyph で使用可能な Markdown は `MyST <https://myst-parser.readthedocs.io/en/latest/>`_ をベースに独自の構文を加えた方言です。
-MyST は Sphinx で使用可能な Markdown 方言です。
+MyST は Sphinx で使用可能な Markdown の方言の一つです。
 
 マニュアルの中で Thothglyph 独自の構文は "(Thoghglyph 方言)" と表記してあります。
 
@@ -104,7 +104,7 @@ nonum 属性を記入すると見出しの番号付けをスキップします�
     # まえがき (1. まえがき)
 
     {notoc=1 nonum=1}
-    #* 目次 (目次)
+    # 目次 (目次)
 
     # XXとは (2. XXとは)
 
@@ -292,7 +292,7 @@ Footnote List
 
 Fence の開始行で\ ``{footnote}``\ と指定すると Footnote List (脚注リスト) となります。
 Field List ブロックの書き方で脚注の内容を記入します。
-文中の脚注の書き方は [Footnote](#Footnote) 参照。
+文中の脚注の書き方は :ref:`footnote` 参照。
 
 .. code-block:: none
 
@@ -308,7 +308,7 @@ Reference List
 
 Fence の開始行で\ ``{reference}``\ と指定すると Reference List (参照リスト) となります。
 Field List ブロックの書き方で脚注の内容を記入します。
-文中の参照の書き方は [Reference](#Reference) 参照。
+文中の参照の書き方は :ref:`reference` 参照。
 
 .. code-block:: none
 
@@ -483,7 +483,7 @@ Custom Block
 ------------
 
 Fence の開始行でその他の\ ``{keyword}``\ を指定すると Custom ブロックとなります。
-``keyword``\ には ``graphviz`` , ``blockdiag`` , ``wavedrom`` などを使用できます。
+``keyword``\ には ``math``, ``graphviz`` , ``blockdiag`` , ``wavedrom`` を使用できます。
 
 Code Block
 ----------
@@ -578,6 +578,8 @@ Hyper Link と同じ構文でURLの代わりに文書中のラベル名を指定
 
     [Here](sect1) is the same!
 
+.. _footnote:
+
 Footnote
 --------
 
@@ -595,6 +597,8 @@ ID は見出しレベル1以下で一意のものにする必要があります�
     :1: This is footnote.
     :2: This is footnote too.
     ```
+
+.. _reference:
 
 Refenrence
 ----------
