@@ -38,6 +38,8 @@ Config
     version = '1.2.3'
     author = cmd("git config user.name")
     attrs = {'author': 'Foo Bar'}
+    templatedir = './my_template'  # copy from thothglyph/template
+    theme = 'preview'  # or 'default'
     ⑇⑇⑇
 
 後述の Include ロールで外部ファイルをインクルードできます。

@@ -13,7 +13,7 @@ Thothglyph 方言
 Thothglyph で使用可能な Markdown は `MyST <https://myst-parser.readthedocs.io/en/latest/>`_ をベースに独自の構文を加えた方言です。
 MyST は Sphinx で使用可能な Markdown の方言の一つです。
 
-マニュアルの中で Thothglyph 独自の構文は "(Thoghglyph 方言)" と表記してあります。
+マニュアルの中で Thothglyph 独自の構文は "(Thothglyph 方言)" と表記してあります。
 
 Preprocess
 ==========
@@ -23,7 +23,7 @@ Thothglyph は Markdown ドキュメントを構文解析する前に簡単な�
 Config
 ------
 
-(Thoghglyph 方言)
+(Thothglyph 方言)
 
 ``---``\ のみの行で囲まれたテキストは Config ブロックとなります。
 ドキュメントの最初のみ記述可能な構文です。
@@ -36,12 +36,14 @@ Config
     version = '1.2.3'
     author = cmd("git config user.name")
     attrs = {'author': 'Foo Bar'}
+    templatedir = './my_template'  # copy from thothglyph/template
+    theme = 'preview'  # or 'default'
     ---
 
 ControlFlow
 -----------
 
-(Thoghglyph 方言)
+(Thothglyph 方言)
 
 2文字の\ ``%``\ の後に特定のキーワードを記入すると ControlFlow となります。
 ドキュメントの一部分を条件により表示/非表示できます。
@@ -541,6 +543,12 @@ Image
     Thothglyph のアイコンはこちら: ![](./tglyph_64.png)
 
 オプションで画像の幅を設定できます。縦横比は固定です。
+
+.. code-block:: none
+
+    画像サイズ変更(ピクセルサイズで指定): ![](./tglyph_64.png){w=150px}
+
+    画像サイズ変更(最大幅からの%で指定): ![](./tglyph_64.png){w="20%"}
 
 Keyboard / Button / Menu
 ------------------------
