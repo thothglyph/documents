@@ -139,6 +139,13 @@ Paragraph は空行が出現するまで継続します。
 
     これは段落2のテキストです。
 
+段落終端記号\ ``⊹``\ を行末に挿入すると空行なしで次の段落に移行できます。
+
+.. code-block:: none
+
+    これは段落1のテキストです。⊹
+    これは段落2のテキストです。
+
 Bullet List
 -----------
 
@@ -274,6 +281,30 @@ Check List
     ꓾꓾ List item 1-2
     •••[x] List item 1-2-1
     •••[ ] List item 1-2-2
+    • List item 2
+
+Scoped Blocks
+-------------
+
+ブロックのスコープ (開始位置と終了位置) を\ ``⦃``\ と\ ``⦄``\ で指定できます。
+このブロックは Scoped Blocks となります。
+
+1行で複数段落を記述したり、リストのレベルを気にすることなく入れ子にできます。
+
+.. code-block:: none
+
+    ⦃Paragraph 1.⦄⦃Paragraph 2.⦄
+
+    • ⦃List item 1
+      ꓾ ⦃List item 1-1
+        ᛝAᛝ List item 1-1-1
+        ᛝBᛝ List item 1-1-2
+        ⦄
+      ꓾ ⦃List item 1-2
+        •[x] List item 1-2-1
+        •[ ] List item 1-2-2
+        ⦄
+      ⦄
     • List item 2
 
 Footnote List
@@ -528,6 +559,17 @@ Decoration
     ⋄⁒強調かつ重要⁒⋄のように入れ子にできます。
     また⌃上付き文字⌃や⌄下付き文字⌄にもできます。
     更に⫶変数⫶や⸌コード⸌も記入できます。
+
+Linebreak
+---------
+
+段落内の改行は多くの出力形式で無視されますが、\ ``↲``\ を挿入すると改行を表す特殊文字に変換されます。
+例えば HTML 出力の場合 `<br \>` となります。
+
+.. code-block:: none
+
+    First line text.↲
+    Second line text.
 
 Role
 ----
