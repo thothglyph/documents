@@ -368,6 +368,33 @@ Basic Table
     | data51 | data52 | data53 |⏴data54 |
     | data61 |⏶data62 |⏶data63 |⏴data64 |
 
+先頭に ``⟦⟧`` で囲まれた行を挿入することでオプションを記述できます。
+
+.. code-block:: none
+
+    ⟦type="long" w="100%" widths="1 2 3" fontsize="small"⟧
+    | data11 | data12 | data13 |
+    | data21 | data22 | data23 |
+
+指定できるオプションは次の通りです。
+
+type
+    表のタイプを指定します。long のみ指定できます。
+    long を指定すると PDF 形式の出力時にページをまたがる表を生成できます。
+
+w
+    表の幅を指定します。単位として pt と % が指定できます。
+
+widths
+    表の各列の幅の相対サイズを指定します。
+
+fontsize
+    表全体のフォントサイズを指定します。mediam small x-small から指定できます。
+
+align
+    表の各列のアライメントを指定します。l c r x から指定できます。
+    それぞれ左、中央、右、左(幅調整)を表します。
+
 List Table
 ----------
 
@@ -559,6 +586,28 @@ Decoration
     ⋄⁒強調かつ重要⁒⋄のように入れ子にできます。
     また⌃上付き文字⌃や⌄下付き文字⌄にもできます。
     更に⫶変数⫶や⸌コード⸌も記入できます。
+
+共通の終了シンボルを用いることもできます。
+
+.. code-block:: none
+
+    ⁒強調⟠、⋄重要⟠、‗挿入⟠、¬削除⟠
+
+Color Decoration
+----------------
+
+色を表すシンボルと終了シンボルでテキストを囲むことで、テキストの色を指定できます。
+指定できる色は5種類です。
+
+.. code-block:: none
+
+    text 🔴color1⟠ 🟡color2⟠ 🟢color3⟠ 🔵color4⟠ 🟣color5⟠ text.
+
+ネストした場合内側の色が反映されます。
+
+.. code-block:: none
+
+    🔵Color 🟣Decoration⟠ can⟠ be nested.
 
 Linebreak
 ---------

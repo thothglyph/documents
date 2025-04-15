@@ -350,6 +350,35 @@ Thothglyph 専用の構文として、セルの内容を\ ``:<``\ もしくは\ 
     | data51 | data52  | data53  |:<data54 |
     | data61 |:<data62 |:<data63 |:<data64 |
 
+Basic Table (Directive)
+-----------------------
+
+標準の Markdown の表に関するパースはいくつかの制限があります。
+
+* 複数行のヘッダを記述できない
+* ヘッダなしでアライメントの指定ができない
+
+``{table}`` Directive を用いてこれらの問題を解決できます。
+
+.. code-block:: none
+
+    ```{table}
+    | head11 | head12 | head13 |
+    | head21 | head22 | head23 |
+    |:-------|:------:|-------:|
+    | data11 | data12 | data13 |
+    | data`21` | data22 | data23 |
+    | a | b | c |
+    ```
+
+.. code-block:: none
+
+    ```{table}
+    |:------:|-------:|+-------|
+    | data11 | data12 | data13 |
+    | A | B | C |
+    ```
+
 List Table
 ----------
 
