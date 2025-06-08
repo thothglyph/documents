@@ -27,17 +27,37 @@ Config
 
 ``---``\ のみの行で囲まれたテキストは Config ブロックとなります。
 ドキュメントの最初のみ記述可能な構文です。
-ドキュメントの設定を Python 言語で記述します。
+ドキュメントの設定を YAML 言語で記述します。
 
 .. code-block:: none
 
     ---
+    title : 'Document Title'
+    version : '1.2.3'
+    author : Foo Bar
+    attrs : {author : 'Foo Bar'}
+    templatedir : './my_template'
+    theme : 'preview'  # or 'default'
+    ---
+
+先頭の\ ``---``\ に続いて\ ``python``\ を記述すると Python 言語で設定を記述できます。
+
+.. code-block:: none
+
+    ---python
     title = 'Document Title'
     version = '1.2.3'
     author = cmd("git config user.name")
     attrs = {'author': 'Foo Bar'}
-    templatedir = './my_template'  # copy from thothglyph/template
+    templatedir = './my_template'
     theme = 'preview'  # or 'default'
+    ---
+
+以下のように記述すると、外部ファイルをインクルードできます。
+
+.. code-block:: none
+
+    ---{include} ./conf.py python
     ---
 
 ControlFlow
@@ -45,23 +65,23 @@ ControlFlow
 
 (Thothglyph 方言)
 
-2文字の\ ``%``\ の後に特定のキーワードを記入すると ControlFlow となります。
+``%#``\ の後に特定のキーワードを記入すると ControlFlow となります。
 ドキュメントの一部分を条件により表示/非表示できます。
 サポートしているキーワードは if, elif, end です。
 条件には Python 構文が使用でき、Config ブロックで定義した attrs の値を使用できます。
 
 .. code-block:: none
 
-    %%if author == 'Smith'
+    %#if author == 'Smith'
     Profile about Smith.
-    %%elif author == 'Tanaka'
+    %#elif author == 'Tanaka'
     Profile about Tanaka.
-    %%end
+    %#end
 
 Comment
 -------
 
-行頭が1文字の\ ``%``\ で始まる行はコメント行となります。
+``%//``\ で始まる行はコメント行となります。
 コメント行はプリプロセスの段階で文中から削除されます。
 
 .. code-block:: none
@@ -353,6 +373,8 @@ Thothglyph 専用の構文として、セルの内容を\ ``:<``\ もしくは\ 
 Basic Table (Directive)
 -----------------------
 
+(Thothglyph 方言)
+
 標準の Markdown の表に関するパースはいくつかの制限があります。
 
 * 複数行のヘッダを記述できない
@@ -378,6 +400,42 @@ Basic Table (Directive)
     | data11 | data12 | data13 |
     | A | B | C |
     ```
+
+先頭でオプションを記述できます。
+
+.. code-block:: none
+
+    ```{table}
+    :type: long
+    :w: 100%
+    :widths: 1,2,3
+    :fontsize: small
+    | data11 | data12 | data13 |
+    | data21 | data22 | data23 |
+    ```
+
+指定できるオプションは次の通りです。
+
+type
+    表のタイプを指定します。long のみ指定できます。
+    long を指定すると PDF 形式の出力時にページをまたがる表を生成できます。
+
+w
+    表の幅を指定します。単位として pt と % が指定できます。
+
+widths
+    表の各列の幅の相対サイズを指定します。
+
+align
+    表の各列のアライメントを指定します。l c r x xc xr から指定できます。
+    それぞれ左、中央、右、左(幅調整)、中央(幅調整)、右(幅調整)を表します。
+
+colspec
+    widths と align を同時に指定できます。
+    5l,3c,1r のように指定します。
+
+fontsize
+    表全体のフォントサイズを指定します。mediam small x-small から指定できます。
 
 List Table
 ----------
@@ -562,6 +620,24 @@ Decoration
     装飾の種類は *強調* **重要** ***強調かつ重要*** があります。
     `コード` も記入できます。
 
+Color Decoration
+----------------
+
+(Thothglyph 方言)
+
+色を表すシンボルと終了シンボルでテキストを囲むことで、テキストの色を指定できます。
+指定できる色は5種類です。
+
+.. code-block:: none
+
+    text `🔴color1` `🟡color2` `🟢color3` `🔵color4` `🟣color5` color text.
+
+ネストした場合内側の色が反映されます。
+
+.. code-block:: none
+
+    ``🔵Color `🟣decoration` can`` be nested.
+
 Image
 -----
 
@@ -614,6 +690,16 @@ Hyper Link と同じ構文でURLの代わりに文書中のラベル名を指定
     First section: [](sect1)!
 
     [Here](sect1) is the same!
+
+``ファイル名#アンカー`` 形式もサポートしています。
+
+.. code-block:: none
+
+    A section in same file: [](#sect1)
+
+    A section in other file: [](other.md#sect1)
+
+    First section in other file: [](other.tglyph)
 
 .. _footnote:
 

@@ -50,6 +50,45 @@ Config
     ¤include⸨./conf.py⸩
     ⑇⑇⑇
 
+代表的な設定には次のものがあります。
+
+`title`
+    ドキュメントのタイトル。表紙のタイトルやファイル名に反映される。
+
+`version`
+    ドキュメントのバージョン。
+
+`author`
+    ドキュメントの著者。
+
+`date`
+    ドキュメントの日付。
+
+`attrs`
+    ドキュメント内の変数。
+
+`templatedir`
+    出力ファイルのテンプレートディレクトリ。
+
+`theme`
+    テンプレートのテーマ。テンプレートは最終的に `<templatedir>/<output-format>/<theme>/` が選択される。
+
+
+コマンドラインと Config
+~~~~~~~~~~~~~~~~~~~~
+
+コマンドラインでいくつかの Config 設定を指定できます。コマンドラインの設定はドキュメント内の設定より優先されます。
+
+`--template`
+    templatedir を指定します。
+
+    相対パスで設定した場合、ドキュメント内の templatedir は最初の入力ファイルがあるディレクトリを起点にしますが、
+    コマンドラインの設定はコマンド実行時のカレントディレクトリを起点にします。
+
+`--theme`
+    theme を指定します。
+
+
 ControlFlow
 -----------
 
@@ -372,7 +411,7 @@ Basic Table
 
 .. code-block:: none
 
-    ⟦type="long" w="100%" widths="1 2 3" fontsize="small"⟧
+    ⟦type="long" w="100%" widths="1,2,3" fontsize="small"⟧
     | data11 | data12 | data13 |
     | data21 | data22 | data23 |
 
@@ -388,12 +427,16 @@ w
 widths
     表の各列の幅の相対サイズを指定します。
 
+align
+    表の各列のアライメントを指定します。l c r x xc xr から指定できます。
+    それぞれ左、中央、右、左(幅調整)、中央(幅調整)、右(幅調整)を表します。
+
+colspec
+    widths と align を同時に指定できます。
+    5l,3c,1r のように指定します。
+
 fontsize
     表全体のフォントサイズを指定します。mediam small x-small から指定できます。
-
-align
-    表の各列のアライメントを指定します。l c r x から指定できます。
-    それぞれ左、中央、右、左(幅調整)を表します。
 
 List Table
 ----------
@@ -582,16 +625,16 @@ Decoration
 
 .. code-block:: none
 
-    装飾の種類は⁒強調⁒、⋄重要⋄、‗挿入‗、¬削除¬があります。
-    ⋄⁒強調かつ重要⁒⋄のように入れ子にできます。
+    装飾の種類は🙼強調🙼、⧫重要⧫、‗挿入‗、¬削除¬があります。
+    ⧫🙼強調かつ重要🙼⧫のように入れ子にできます。
     また⌃上付き文字⌃や⌄下付き文字⌄にもできます。
-    更に⫶変数⫶や⸌コード⸌も記入できます。
+    更に⁒変数⁒や⸌コード⸌も記入できます。
 
 共通の終了シンボルを用いることもできます。
 
 .. code-block:: none
 
-    ⁒強調⟠、⋄重要⟠、‗挿入⟠、¬削除⟠
+    🙼強調⟠、⧫重要⟠、‗挿入⟠、¬削除⟠
 
 Color Decoration
 ----------------
@@ -687,9 +730,19 @@ Hyper Link と同じ構文でURLの代わりに文書中のラベル名を指定
 
 .. code-block:: none
 
-    First section: ⸨sect1⸩!
+    Cross refecence to section 1: ⸨sect1⸩!
 
     ⟦Here⟧⸨sect1⸩ is the same!
+
+HTML や Markdown のような ``ファイル名#アンカー`` 形式もサポートしています。
+
+.. code-block:: none
+
+    A section in same file: ⸨#sect1⸩
+
+    A section in other file: ⸨other.tglyph#sect1⸩
+
+    First section in other file: ⸨other.tglyph⸩
 
 .. _footnote:
 
