@@ -21,6 +21,10 @@ Installation
     # docx
     pip install python-docx
 
+PDF 出力は Texlive 2021 以上の環境が必要です。
+OS によってはパッケージマネージャで入手できる Texlive のバージョンが古く、正常に出力できない場合があります。
+その場合、 :doc:`Texlive のインストール方法 <./install-texlive>` を参照して最新の Texlive を導入してください。
+
 数式や図表などを表示したい場合
 
 .. code-block:: bash
