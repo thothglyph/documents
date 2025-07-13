@@ -8,7 +8,13 @@ Installation
 
 VSCode の Marketplace からインストールできます。
 
-インストールが完了すると、ユーザ・ストレージ領域に自動で Python 仮想環境を作成し、thothglyph がインストールされます。
+thothglyph-doc のインストール
+=============================
+
+VSCode の拡張をインストールしただけでは、thothglyph 環境はインストールされません。
+
+"Command Palette" > "Thothglyph: Install/Update environment" を選択すると、
+ユーザ・ストレージ領域に自動で Python 仮想環境を作成し、thothglyph がインストールされます。
 
 .tglyph ファイルの編集
 ======================
@@ -52,6 +58,9 @@ VSCode の Marketplace からインストールできます。
      - ᛝ
      - Description List (説明リスト) の用語部分
    * - \-
+     - 𐬹
+     - リストの汎用字下げ
+   * - =
      - ◃
      - リストの終了
    * - \\
@@ -139,12 +148,33 @@ VSCode の Marketplace からインストールできます。
      - 🟣
      - インライン カラー5
 
+.md ファイルの編集
+==================
+
+拡張子 .md (Markdown) ファイル
+
+プレビューの表示
+================
+
+.tglyph または .md ファイルで thothglyph の HTML プレビューを表示できます。
+プレビュー表示には次の2ステップが必要です。
+
+1. ルートドキュメントを開き、エディタがアクティブな状態で Ctrl+R で "プレビュー対象" に設定します。
+
+2. エディタがアクティブな状態で Ctrl+Shift+R で横に HTML プレビューが表示されます。
+
+   .tglyph または .md ファイルのエディタ画面であれば、どのファイルでプレビュー表示しても、"プレビュー対象" にしたファイルがプレビューされます。
+
+   ファイルを保存するとプレビューが更新されます。
+
 ドキュメントの変換
 ==================
 
-.tglyph ファイルの編集中に VSCode 上でドキュメントの変換ができます。
+.tglyph または .md ファイルの編集中に VSCode 上でドキュメントの変換ができます。
 
-"Command Palette" > "Thothglyph: Export File As ..." と選択します。
-html, pdf, docx から選択できます (現在 html のみ動作)。
+Ctrl+Shift+E もしくは "Command Palette" > "Thothglyph: Export File As ..." と選択します。
+変換後のファイル形式は html, pdf, docx から選択できます。
+
+pdf への変換には Texlive 環境が必要です。詳細は :doc:`Texlive のインストール方法 <../install-texlive>` を参照してください。
 
 一度 Export すると Ctrl+E で上書きできるようになります。
