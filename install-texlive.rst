@@ -58,6 +58,7 @@ Thothglyph ツールの利用に必要なパッケージを ``tlmgr`` コマン�
     ulem \
     fancybox \
     enumitem \
+    koma-script \
     float \
     caption \
     capt-of \
